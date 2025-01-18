@@ -211,6 +211,53 @@ def spy_game(num_list):
             code.remove(num)
     return len(code) == 1
 
+
+def count_primes(num):
+    '''
+    COUNT PRIMES: Write a function that returns the number of prime numbers that exist up to and including a given number
+    :param num:
+    :return:
+    '''
+    print(f'count_primes({num})')
+    primes=[]
+    if num >= 2:
+        primes.append(2)
+    for num in range(3,num+1,2):
+        for prime in primes:
+            if num % prime == 0:
+                break # Check no further divisibility by the prime list available so far
+        else:
+            primes.append(num)
+    return len(primes),primes
+
+
+def print_big(ch):
+    '''
+    PRINT BIG: Write a function that takes in a single letter, and returns a 5x5 representation of that letter¶
+    print_big('a')
+
+    out:   *
+          * *
+         *****
+         *   *
+         *   *
+
+    HINT: Consider making a dictionary of possible patterns, and mapping the alphabet to specific 5-line combinations of patterns.
+    For purposes of this exercise, it's ok if your dictionary stops at "E".
+    :param ch:
+    :return:
+    '''
+    print(f'print_big({ch})')
+    patterns = ['*     ','  *  ','**** ',' ****','*****',' * * ','*   *']
+    code_dict={'A':[1,5,4,6,6],
+               'B':[2,6,4,6,2],
+               'C':[3,0,0,0,3],
+               'D':[2,6,6,6,2],
+               'E':[4,0,2,0,4],
+               }
+    for indx in code_dict[ch.upper()]:
+        print(patterns[indx])
+
 if __name__ == '__main__':
     print('Lets practice functions')
     hello_func('Vinu')
@@ -262,3 +309,7 @@ if __name__ == '__main__':
     print(spy_game([1,2,4,0,0,7,5]))
     print(spy_game([1,0,2,4,0,5,7]))
     print(spy_game([1,7,2,0,4,5,0]))
+    
+    print(count_primes(1000))
+
+    for ch in 'abcde': print_big(ch)
