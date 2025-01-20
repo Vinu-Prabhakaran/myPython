@@ -1,3 +1,5 @@
+import math
+import string
 from random import shuffle
 
 
@@ -114,7 +116,7 @@ def has_33(num_list):
     '''
     print(f'has_33({num_list})')
     for idx in range(0,len(num_list) - 1):
-        if (num_list[idx] == 3 and num_list[idx + 1] == 3):
+        if num_list[idx] == 3 and num_list[idx + 1] == 3:
             return True
     return False
 
@@ -201,7 +203,7 @@ def spy_game(num_list):
     '''
     SPY GAME: Write a function that takes in a list of integers
     and returns True if it contains 007 in order
-    :param int_list:
+    :param num_list:
     :return:
     '''
     print(f'spy_game({num_list})')
@@ -258,6 +260,102 @@ def print_big(ch):
     for indx in code_dict[ch.upper()]:
         print(patterns[indx])
 
+
+def sphere_volume(radius):
+    '''
+    Write a function that computes the volume of a sphere given its radius.
+    :param radius:
+    :return:
+    '''
+    print(f'sphere_volume({radius})')
+    return (4/3) * math.pi * (radius ** 3)
+
+
+def range_check(num, low, high):
+    '''
+    Write a function that checks whether a number is in a given range (inclusive of high and low)
+    :param num:
+    :param low:
+    :param high:
+    :return:
+    '''
+    print(f'range_check({num}, {low}, {high})')
+    if num in range(low,high+1):
+        return f'{num} is in range {low} - {high}'
+    else:
+        return f'{num} is NOT in range {low} - {high}'
+
+
+def upper_lower(sent):
+    '''
+    Write a Python function that accepts a string and calculates the number of upper case letters and lower case letters.
+    Sample String : 'Hello Mr. Rogers, how are you this fine Tuesday?'
+    Expected Output :
+    No. of Upper case characters : 4
+    No. of Lower case Characters : 33
+    :param sent:
+    :return:
+    '''
+    print(f'upper_lower({sent})')
+    upper_count = 0
+    lower_count = 0
+
+    for letter in sent:
+        if letter.isupper():
+            upper_count += 1
+        elif letter.islower():
+            lower_count += 1
+    return upper_count,lower_count
+
+
+def unique_list(my_list):
+    '''
+    Write a Python function that takes a list and returns a new list with unique elements of the first list.
+    :param my_list:
+    :return:
+    '''
+    print(f'unique_list({my_list})')
+    return list(set(my_list))
+
+
+def multiply(numbers):
+    '''
+    Write a Python function to multiply all the numbers in a list.
+    :param numbers:
+    :return:
+    '''
+    print(f'multiply({numbers})')
+    result = 1
+    for num in numbers:
+        result *= num
+    return result
+
+
+def palindrome_check(word):
+    '''
+    Write a Python function that checks whether a word or phrase is palindrome or not.
+    :param word:
+    :return:
+    '''
+    print(f'palindrome_check({word})')
+    word_without_spaces = word.replace(' ','')
+    return word_without_spaces == word_without_spaces[::-1]
+
+
+def is_panagram(s):
+    '''
+    Write a Python function to check whether a string is pangram or not.
+    Panagram is a sentence or verse that contains all the letters of the alphabet.
+    (Assume the string passed in does not have any punctuation)
+    :param s:
+    :return:
+    '''
+    print(f'is_panagram({s})')
+    alpha_set = set(string.ascii_lowercase)
+    input_set = set(s.replace(' ','').lower())
+    return alpha_set == input_set
+
+
 if __name__ == '__main__':
     print('Lets practice functions')
     hello_func('Vinu')
@@ -313,3 +411,17 @@ if __name__ == '__main__':
     print(count_primes(1000))
 
     for ch in 'abcde': print_big(ch)
+
+    print(sphere_volume(2))
+
+    print(range_check(5,2,7))
+
+    print(upper_lower('Hello Mr. Rogers, how are you this fine Tuesday?'))
+    
+    print(unique_list([1,1,1,1,2,2,3,3,3,3,4,5]))
+
+    print(multiply([1, 2, 3, -4]))
+
+    print(palindrome_check('nurses run'))
+
+    print(is_panagram('The quick brown fox jumps over the lazy dog'))
