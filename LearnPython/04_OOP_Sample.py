@@ -12,6 +12,9 @@ class Animal:
     def speak(self):
         raise NotImplementedError("Subclass must implement abstract method")
 
+    def who_am_i(self):
+        return 'I am an animal'
+
 class Dog(Animal):
 
     def __init__(self,name,color):
@@ -19,6 +22,9 @@ class Dog(Animal):
 
     def speak(self):
         return f'{self.name} says WOOF!!'
+
+    def who_am_i(self):
+        return f'I am a Dog and {super().who_am_i()}'
 
 class Cat(Animal):
 
@@ -48,6 +54,7 @@ if __name__ == '__main__':
     print(some_animal)
     dog = Dog('Lola','Yellow')
     print(dog)
+    print(dog.who_am_i())
     cat = Cat('Felix','White')
     print(cat)
     print(cat.speak())
